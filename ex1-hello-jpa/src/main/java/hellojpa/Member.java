@@ -13,6 +13,14 @@ public class Member {
     // @Column(name="") 데이터베이스 열 이름을 지정
     private String name;
 
+    public Member(){ // 기본 생성자가 하나 있어야 함.
+    }
+
+    public Member(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
