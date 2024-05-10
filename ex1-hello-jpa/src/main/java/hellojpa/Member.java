@@ -1,32 +1,31 @@
 package hellojpa;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-@Entity // jpa를 사용함을 인식
-// @Table(name="") 데이터베이스의 테이블 이름을 지정
+import java.util.Date;
+
+@Entity
+@SequenceGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        sequenceName = "MEMBER_SEQ", //매핑할 데이터베이스 시퀀스 이름
+        initialValue = 1, allocationSize =50)
 public class Member {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "MEMBER_SEQ_GENERATOR")
     private Long id;
-    // @Column(name="") 데이터베이스 열 이름을 지정
-    private String name;
+    @Column(name = "name", nullable = false)
+    private String username;
 
-    public Member(){ // 기본 생성자가 하나 있어야 함.
+    public Member() {
     }
 
-    public Member(Long id, String name){
-        this.id = id;
-        this.name = name;
+    public String getUsername() {
+        return username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getId() {
