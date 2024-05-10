@@ -6,6 +6,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 
 public class JpaMain {
 
@@ -17,13 +18,14 @@ public class JpaMain {
         tx.begin();
 
         try{
-            // 객체지향적이지 못한 코드 : 단계적으로 찾아감. 관겨헹 DB에 맞춘 설계
-            Order order = em.find(Order.class, 1L);
-            Long memberId = order.getMemberId();
-            Member member = em.find(Member.class, memberId);
+            Order order = new Order();
+            em.persist(order);
 
-            // 객체지향적 코드 : 한 번에 찾아감.
-            Member findMember = order.getMember();
+//            order.addOrderItem(new OrderItem());
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+
+            em.persist(orderItem);
 
             tx.commit();
         } catch (Exception e) {
