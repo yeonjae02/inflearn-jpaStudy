@@ -2,24 +2,37 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@SequenceGenerator(
-        name = "MEMBER_SEQ_GENERATOR",
-        sequenceName = "MEMBER_SEQ", //매핑할 데이터베이스 시퀀스 이름
-        initialValue = 1, allocationSize =50)
 public class Member {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "MEMBER_SEQ_GENERATOR")
+    @Id @GeneratedValue
+    @Column(name="MEMBER_ID")
     private Long id;
-    @Column(name = "name", nullable = false)
+    @Column(name = "USERNAME")
     private String username;
+
+//    @Column(name="TEAM_ID")
+//    private Long teamId;
+
+
+    @ManyToOne
+    @JoinColumn(name="TEAM_ID")
+    private Team team;
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this); // 연관관계 편의 메소드 -> setter에서 쓰기보다는 메소드를 따로 정의해서 이 코드를 쓰는 걸 추천
+    }
 
     public Member() {
     }
-
     public String getUsername() {
         return username;
     }
@@ -35,4 +48,6 @@ public class Member {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 }
