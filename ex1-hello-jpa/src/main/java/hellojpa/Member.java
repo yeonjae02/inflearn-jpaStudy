@@ -1,12 +1,14 @@
 package hellojpa;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity{
     @Id @GeneratedValue
     @Column(name="MEMBER_ID")
     private Long id;
