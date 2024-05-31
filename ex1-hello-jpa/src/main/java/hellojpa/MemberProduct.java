@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 @Entity
 public class MemberProduct {
-
     @Id @GeneratedValue
     private Long id;
 

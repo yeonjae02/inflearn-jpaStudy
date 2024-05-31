@@ -2,11 +2,6 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 @Entity
 public class Member extends BaseEntity{
     @Id @GeneratedValue
@@ -15,12 +10,18 @@ public class Member extends BaseEntity{
     @Column(name = "USERNAME")
     private String username;
 
-    @OneToOne
-    @JoinColumn(name="LOCKER_ID")
-    private Locker locker;
+    @ManyToOne(fetch=FetchType.LAZY) // 프록시로 조회
+    //@ManyToOne(fetch =FetchType.EAGER) // 즉시 로딩
+    @JoinColumn(name="TEAM_ID")
+    private Team team;
 
-    @OneToMany(mappedBy = "member")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public Member() {
     }
