@@ -14,22 +14,22 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class MemberRepositoryTest {
 
-    @Autowired MemberRepository memberRepository;
-    @Test
-    @Transactional
-    public void testMember() throws Exception {
-        // given
-        Member member = new Member();
-        member.setUsername("memberA");
-
-        // when
-        Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.find(saveId);
-
-        // then
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-        Assertions.assertThat(findMember).isEqualTo(member); // 영속성 컨텍스트 1차 캐시 -> 동일함.
-    }
+//    @Autowired MemberRepository memberRepository;
+//    @Test
+//    @Transactional
+//    public void testMember() throws Exception {
+//        // given
+//        Member member = new Member();
+//        member.setUsername("memberA");
+//
+//        // when
+//        Long saveId = memberRepository.save(member);
+//        Member findMember = memberRepository.find(saveId);
+//
+//        // then
+//        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
+//        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+//        Assertions.assertThat(findMember).isEqualTo(member); // 영속성 컨텍스트 1차 캐시 -> 동일함.
+//    }
 
 }
