@@ -2,21 +2,19 @@ package jpabook.jpashop.api;
 
 import jakarta.validation.Valid;
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.service.MemberService;
+import jpabook.jpashop.service.ItemService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.sql.Update;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 public class MemberApiController {
-    public final MemberService memberService;
+    public final ItemService.MemberService memberService;
 
     @GetMapping("/api/v1/members")
     public List<Member> membersV1() { // 엔티티 정보가 전부 노출됨.
