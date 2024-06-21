@@ -1,6 +1,8 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,11 +16,13 @@ public class Member {
     @Column(name="member_id")
     private Long id;
 
+    @NotEmpty
     private String name;
 
     @Embedded
     private Address address;
 
+    // @JsonIgnore <- 회원 조회 시 V1에서 해당 필드 내용 나오지 않도록
     @OneToMany(mappedBy = "member") // 읽기 전용
     private List<Order> orders = new ArrayList<>();
 }
