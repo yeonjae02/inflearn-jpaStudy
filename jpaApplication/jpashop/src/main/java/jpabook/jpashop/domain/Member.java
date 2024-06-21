@@ -22,7 +22,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    // @JsonIgnore <- 회원 조회 시 V1에서 해당 필드 내용 나오지 않도록
+    // @JsonIgnore <- v1 버전 api 사용 시
     @OneToMany(mappedBy = "member") // 읽기 전용
     private List<Order> orders = new ArrayList<>();
 }
