@@ -7,9 +7,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import static jakarta.persistence.FetchType.*;
 
+//@BatchSize(size = 1000)
 @Entity
 @Getter @Setter
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
