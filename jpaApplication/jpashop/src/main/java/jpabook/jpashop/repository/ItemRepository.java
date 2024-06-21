@@ -16,7 +16,7 @@ public class ItemRepository {
         if (item.getId() == null) { // 새로 생성된 객체라는 뜻
             em.persist(item);
         } else {
-            em.merge(item); // 업데이트와 유사한 개념
+            em.merge(item); // 모든 데이터를 바꿈
         }
     }
 
